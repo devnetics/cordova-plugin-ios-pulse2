@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-ios-pulse2"
+    version="3.0.1">
+
+    <name>Pulse2 Plugin for Cordova iOS</name>
+    <description>pulse2 ios</description>
+    <license>Apache 2.0</license>
+    <keywords>pulse2</keywords>
+
+    <engines>
+        <engine name="cordova" version=">=2.2.0" />
+    </engines>
+
+    <asset src="www/pulse2.js" target="plugins/pulse2.js" />
+
+	<js-module src="www/pulse2.js" name="Pulse2">
+    	<clobbers target="window.Pulse2" />
+	</js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <!-- feature tag in config.xml -->
+        <config-file target="config.xml" parent="/widget">
+          <feature name="Pulse2">
+            <param name="ios-package" value="CDVPulse2"/>
+          </feature>
+        </config-file>
+        <config-file target="*-Info.plist" parent="UISupportedExternalAccessoryProtocols">
+          <array>
+            <string>com.jbl.connect</string>
+          </array>
+        </config-file>
+
+        <header-file src="src/ios/CDVPulse2.h" />
+        <source-file src="src/ios/CDVPulse2.m"/>
+
+        <framework src="src/ios/Frameworks/Pulse2SDK.framework" custom="true"/>
+        <framework src="ExternalAccessory.framework" />
+
+    </platform>
+</plugin>
